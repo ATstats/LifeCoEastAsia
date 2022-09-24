@@ -1,0 +1,333 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(readxl)
+library(writexl)
+library(lifecontingencies)
+library(ggplot2)
+setwd("C:/Users/albert go/Desktop/Schoolworks/LIFECO1")
+```
+
+Hong Kong Males
+```{r}
+hkm <- read_excel("hj_jp_kr_lifetables.xlsx", sheet="HK-M")
+hkm_act <- new("actuarialtable", x=hkm$Age, lx=hkm$lx, interest=0.06)
+hkm_act_df <- as(hkm_act,"data.frame")
+head(hkm_act_df)
+
+Ax_table <- data.frame()
+
+for(j in hkm_act_df$x){
+  Ax <- Axn(hkm_act,x = j)
+  ax <- axn(hkm_act, x=j)
+  Px <- Ax/ax
+  Ax_table_1 <- data.frame(Ax)
+  ax_table_1 <- data.frame(ax)
+  Px_table_1 <- data.frame(Px)
+  output.df <- cbind(Ax_table_1,ax_table_1,Px_table_1)
+  Ax_table <- rbind(Ax_table, output.df)
+}
+
+View(Ax_table)
+hkm_output <- cbind(hkm,Ax_table)
+View(hkm_output)
+write_xlsx(hkm_output,"HK Males Output Table.xlsx")
+```
+
+Hong Kong Females
+```{r}
+hkf <- read_excel("hj_jp_kr_lifetables.xlsx", sheet="HK-F")
+hkf_act <- new("actuarialtable", x=hkf$Age, lx=hkf$lx, interest=0.06)
+hkf_act_df <- as(hkf_act,"data.frame")
+head(hkf_act_df)
+
+Ax_table <- data.frame()
+
+for(j in hkf_act_df$x){
+  Ax <- Axn(hkf_act,x = j)
+  ax <- axn(hkf_act, x=j)
+  Px <- Ax/ax
+  Ax_table_1 <- data.frame(Ax)
+  ax_table_1 <- data.frame(ax)
+  Px_table_1 <- data.frame(Px)
+  output.df <- cbind(Ax_table_1,ax_table_1,Px_table_1)
+  Ax_table <- rbind(Ax_table, output.df)
+}
+
+View(Ax_table)
+hkm_output <- cbind(hkf,Ax_table)
+View(hkm_output)
+write_xlsx(hkm_output,"HK Females Output Table.xlsx")
+```
+
+Japan Males
+```{r}
+hkf <- read_excel("hj_jp_kr_lifetables.xlsx", sheet="JP-M")
+hkf_act <- new("actuarialtable", x=hkf$Age, lx=hkf$lx, interest=0.06)
+hkf_act_df <- as(hkf_act,"data.frame")
+head(hkf_act_df)
+
+Ax_table <- data.frame()
+
+for(j in hkf_act_df$x){
+  Ax <- Axn(hkf_act,x = j)
+  ax <- axn(hkf_act, x=j)
+  Px <- Ax/ax
+  Ax_table_1 <- data.frame(Ax)
+  ax_table_1 <- data.frame(ax)
+  Px_table_1 <- data.frame(Px)
+  output.df <- cbind(Ax_table_1,ax_table_1,Px_table_1)
+  Ax_table <- rbind(Ax_table, output.df)
+}
+
+View(Ax_table)
+hkm_output <- cbind(hkf,Ax_table)
+View(hkm_output)
+write_xlsx(hkm_output,"JP Males Output Table.xlsx")
+```
+
+Japan Females
+```{r}
+hkf <- read_excel("hj_jp_kr_lifetables.xlsx", sheet="JP-F")
+hkf_act <- new("actuarialtable", x=hkf$Age, lx=hkf$lx, interest=0.06)
+hkf_act_df <- as(hkf_act,"data.frame")
+head(hkf_act_df)
+
+Ax_table <- data.frame()
+
+for(j in hkf_act_df$x){
+  Ax <- Axn(hkf_act,x = j)
+  ax <- axn(hkf_act, x=j)
+  Px <- Ax/ax
+  Ax_table_1 <- data.frame(Ax)
+  ax_table_1 <- data.frame(ax)
+  Px_table_1 <- data.frame(Px)
+  output.df <- cbind(Ax_table_1,ax_table_1,Px_table_1)
+  Ax_table <- rbind(Ax_table, output.df)
+}
+
+View(Ax_table)
+hkm_output <- cbind(hkf,Ax_table)
+View(hkm_output)
+write_xlsx(hkm_output,"JP Females Output Table.xlsx")
+```
+
+Korea Males
+```{r}
+hkf <- read_excel("hj_jp_kr_lifetables.xlsx", sheet="KR-M")
+hkf_act <- new("actuarialtable", x=hkf$Age, lx=hkf$lx, interest=0.06)
+hkf_act_df <- as(hkf_act,"data.frame")
+head(hkf_act_df)
+
+Ax_table <- data.frame()
+
+for(j in hkf_act_df$x){
+  Ax <- Axn(hkf_act,x = j)
+  ax <- axn(hkf_act, x=j)
+  Px <- Ax/ax
+  Ax_table_1 <- data.frame(Ax)
+  ax_table_1 <- data.frame(ax)
+  Px_table_1 <- data.frame(Px)
+  output.df <- cbind(Ax_table_1,ax_table_1,Px_table_1)
+  Ax_table <- rbind(Ax_table, output.df)
+}
+
+View(Ax_table)
+hkm_output <- cbind(hkf,Ax_table)
+View(hkm_output)
+write_xlsx(hkm_output,"KR Males Output Table.xlsx")
+```
+
+Korea Females
+```{r}
+hkf <- read_excel("hj_jp_kr_lifetables.xlsx", sheet="KR-F")
+hkf_act <- new("actuarialtable", x=hkf$Age, lx=hkf$lx, interest=0.06)
+hkf_act_df <- as(hkf_act,"data.frame")
+head(hkf_act_df)
+
+Ax_table <- data.frame()
+
+for(j in hkf_act_df$x){
+  Ax <- Axn(hkf_act,x = j)
+  ax <- axn(hkf_act, x=j)
+  Px <- Ax/ax
+  Ax_table_1 <- data.frame(Ax)
+  ax_table_1 <- data.frame(ax)
+  Px_table_1 <- data.frame(Px)
+  output.df <- cbind(Ax_table_1,ax_table_1,Px_table_1)
+  Ax_table <- rbind(Ax_table, output.df)
+}
+
+View(Ax_table)
+hkm_output <- cbind(hkf,Ax_table)
+View(hkm_output)
+write_xlsx(hkm_output,"KR Females Output Table.xlsx")
+```
+
+variable assignment
+```{r}
+hongkongmale <- read_excel("HK Males Output Table.xlsx")
+hongkongfemale <- read_excel("HK Females Output Table.xlsx")
+japanmale <- read_excel("JP Males Output Table.xlsx")
+japanfemale <- read_excel("JP Females Output Table.xlsx")
+koreamale <- read_excel("KR Males Output Table.xlsx")
+koreafemale <- read_excel("KR Females Output Table.xlsx")
+```
+
+
+Hong Kong Comparison of Males and Females
+```{r}
+par(mfrow=c(2,2))
+#Survivorship
+plot(hongkongmale$Age, hongkongmale$lx/100000, type = "l", col="red", main = "Survivorship of Males and Females in Hong Kong", xlab = "Age", ylab="px")
+lines(hongkongfemale$lx/100000, col="black")
+legend("bottomleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Net Single Premium
+plot(hongkongmale$Age, hongkongmale$Ax, type = "l", col="red", main = "A_x of Males and Females in Hong Kong", xlab = "Age", ylab="A_x", ylim=c(0,1))
+lines(hongkongfemale$Ax, col="black")
+legend("topleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Life Annuity due
+plot(hongkongmale$Age, hongkongmale$ax, type = "l", col="red", main = "a_x of Males and Females in Hong Kong", xlab = "Age", ylab="a_x")
+lines(hongkongfemale$ax, col="black")
+legend("bottomleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+
+#Benefit Premium
+plot(hongkongmale$Age, hongkongmale$Px, type = "l", col="red", main = "P_x of Males and Females in Hong Kong", xlab = "Age", ylab="P_x")
+lines(hongkongfemale$Px, col="black")
+legend("topleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+```
+
+
+Japan Comparison of Males and Females
+```{r}
+#Survivorship
+plot(japanmale$Age, japanmale$lx/100000, type = "l", col="red", main = "Survivorship of Males and Females in Japan", xlab = "Age", ylab="s(x)")
+lines(japanfemale$lx/100000, col="black")
+legend("bottomleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Net Single Premium
+plot(japanmale$Age, japanmale$Ax, type = "l", col="red", main = "A_x of Males and Females in Japan", xlab = "Age", ylab="A_x", ylim=c(0,1))
+lines(japanfemale$Ax, col="black")
+legend("topleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Life Annuity due
+plot(japanmale$Age, japanmale$ax, type = "l", col="red", main = "a_x of Males and Females in Japan", xlab = "Age", ylab="a_x")
+lines(japanfemale$ax, col="black")
+legend("bottomleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+
+#Benefit Premium
+#Life Annuity due
+plot(japanmale$Age, japanmale$Px, type = "l", col="red", main = "P_x of Males and Females in Japan", xlab = "Age", ylab="P_x")
+lines(japanfemale$Px, col="black")
+legend("topleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+```
+
+Korea Comparison of Males and Females
+```{r}
+#Survivorship
+plot(koreamale$Age, koreamale$lx/100000, type = "l", col="red", main = "Survivorship of Males and Females in Korea", xlab = "Age", ylab="s(x)")
+lines(koreafemale$lx/100000, col="black")
+legend("bottomleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Net Single Premium
+plot(koreamale$Age, koreamale$Ax, type = "l", col="red", main = "A_x of Males and Females in Korea", xlab = "Age", ylab="A_x", ylim=c(0,1))
+lines(koreafemale$Ax, col="black")
+legend("topleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Life Annuity due
+plot(koreamale$Age, koreamale$ax, type = "l", col="red", main = "a_x of Males and Females in Korea", xlab = "Age", ylab="a_x")
+lines(koreafemale$ax, col="black")
+legend("bottomleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+
+#Benefit Premium
+#Life Annuity due
+plot(koreamale$Age, koreamale$Px, type = "l", col="red", main = "P_x of Males and Females in Korea", xlab = "Age", ylab="P_x")
+lines(koreafemale$Px, col="black")
+legend("topleft", legend = c("Male", "Female"), col = c("red","black"), lty =c(1,1))
+```
+Males in the three countries
+```{r}
+#Survivorship
+plot(hongkongmale$Age, hongkongmale$lx/100000, type = "l", col="red", main = "Survivorship of Males Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="s(x)")
+lines(japanmale$lx/100000, col="black")
+lines(koreamale$lx/100000, col="blue")
+legend("bottomleft", legend = c("Hong Kong", "Japan", "Korea"), col = c("red","black","blue"), lty =c(1,1,1))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Net Single Premium
+plot(hongkongmale$Age, hongkongmale$Ax, type = "l", col="red", main = "A_x of Males Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="A_x")
+lines(japanmale$Ax, col="black")
+lines(koreamale$Ax, col="blue")
+legend("topleft", legend = c("Hong Kong", "Japan", "Korea"), col = c("red","black","blue"), lty =c(1,1,1))
+
+#Life Annuity Due
+plot(hongkongmale$Age, hongkongmale$ax, type = "l", col="red", main = "a_x of Males Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="a_x")
+lines(japanmale$ax, col="black")
+lines(koreamale$ax, col="blue")
+legend("bottomleft", legend = c("Hong Kong", "Japan", "Korea"), col = c("red","black","blue"), lty =c(1,1,1))
+
+#Benefit Premiums
+plot(hongkongmale$Age, hongkongmale$Px, type = "l", col="red", main = "P_x of Males Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="P_x")
+lines(japanmale$Px, col="black")
+lines(koreamale$Px, col="blue")
+legend("topleft", legend = c("Hong Kong", "Japan", "Korea"), col = c("red","black","blue"), lty =c(1,1,1))
+
+```
+
+Females in the three countries
+Males in the three countries
+```{r}
+#Survivorship
+plot(hongkongfemale$Age, hongkongfemale$lx/100000, type = "l", col="red", main = "Survivorship of Females Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="s(x)")
+lines(japanfemale$lx/100000, col="black")
+lines(koreafemale$lx/100000, col="blue")
+lines(hongkongmale$lx/100000, col="red", lty=2)
+lines(japanmale$lx/100000, col="black", lty =2)
+lines(koreamale$lx/100000, col="blue", lty=2)
+legend("bottomleft", legend = c("Hong Kong Female", "Japan Female", "Korea Female","Hong Kong Male", "Japan Male", "Korea Male"), col = rep(c("red","black","blue"),2), lty =c(1,1,1,2,2,2))
+axis(side=2, at = seq(0,1, by = 0.10))
+
+#Net Single Premium
+plot(hongkongfemale$Age, hongkongfemale$Ax, type = "l", col="red", main = "A_x of Males and Females Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="A_x")
+lines(japanfemale$Ax, col="black")
+lines(koreafemale$Ax, col="blue")
+lines(hongkongmale$Ax, col="red", lty=2)
+lines(japanmale$Ax, col="black", lty =2)
+lines(koreamale$Ax, col="blue", lty=2)
+legend("topleft", legend = c("Hong Kong Female", "Japan Female", "Korea Female","Hong Kong Male", "Japan Male", "Korea Male"), col = rep(c("red","black","blue"),2), lty =c(1,1,1,2,2,2))
+
+#Life Annuity Due
+plot(hongkongfemale$Age, hongkongfemale$ax, type = "l", col="red", main = "a_x of Males and Females Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="a_x")
+lines(japanfemale$ax, col="black")
+lines(koreafemale$ax, col="blue")
+lines(hongkongmale$ax, col="red", lty=2)
+lines(japanmale$ax, col="black", lty =2)
+lines(koreamale$ax, col="blue", lty=2)
+legend("bottomleft", legend = c("Hong Kong Female", "Japan Female", "Korea Female","Hong Kong Male", "Japan Male", "Korea Male"), col = rep(c("red","black","blue"),2), lty =c(1,1,1,2,2,2))
+
+#Benefit Premiums
+plot(hongkongfemale$Age, hongkongfemale$Px, type = "l", col="red", main = "P_x of Males and Females Across Hong Kong, Japan, and Korea", xlab = "Age", ylab="P_x")
+lines(japanfemale$Px, col="black")
+lines(koreafemale$Px, col="blue")
+lines(hongkongmale$Px, col="red", lty=2)
+lines(japanmale$Px, col="black", lty =2)
+lines(koreamale$Px, col="blue", lty=2)
+legend("topleft", legend = c("Hong Kong Female", "Japan Female", "Korea Female","Hong Kong Male", "Japan Male", "Korea Male"), col = rep(c("red","black","blue"),2), lty =c(1,1,1,2,2,2))
+
+
+```
